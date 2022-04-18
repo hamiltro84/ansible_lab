@@ -39,6 +39,15 @@
       state: latest
     when: ansible_distribution == "Rocky" or ansible_distribution == "OracleLinux"
 
+  - name: copy default html file for site
+    tags: apache,apache2,httpd
+    copy:
+      src: default_sites.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
 - hosts: db_servers
   become: true
   tasks:
